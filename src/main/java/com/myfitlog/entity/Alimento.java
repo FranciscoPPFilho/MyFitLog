@@ -33,11 +33,11 @@ public class Alimento {
 
     @Column(nullable = false)
     @PositiveOrZero
-    private Double proteina;
+    private Double carboidrato;
 
     @Column(nullable = false)
     @PositiveOrZero
-    private Double carboidrato;
+    private Double proteina;
 
     @Column(nullable = false)
     @PositiveOrZero

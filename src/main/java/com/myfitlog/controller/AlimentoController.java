@@ -47,8 +47,8 @@ public class AlimentoController {
             .map(item -> new AlimentoResponseDTO(
                 item.getId(),
                 item.getNome(),
-                item.getProteina(),
                 item.getCarboidrato(),
+                item.getProteina(),
                 item.getGordura(),
                 item.getCalorias()
             )).toList();

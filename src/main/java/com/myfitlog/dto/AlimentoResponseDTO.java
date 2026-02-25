@@ -4,8 +4,8 @@ public record AlimentoResponseDTO(
 
     Long id,
     String nome,
-    Double proteina,
     Double carboidrato,
+    Double proteina,
     Double gordura,
-    Double caloria
+    Double calorias
 ) {}
