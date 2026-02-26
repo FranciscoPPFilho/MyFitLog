@@ -8,11 +8,11 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(IllegalArgumentException.class)
-    public ResponseEntity<String> handleIllegalArgumentException(IllegalArgumentException ex) {
+    @ExceptionHandler(RecursoNaoEncontradoException.class)
+    public ResponseEntity<String> handleIllegalArgumentException(RecursoNaoEncontradoException ex) {
 
         return ResponseEntity
                 .status(HttpStatus.NOT_FOUND)
-                .body("Recurso não encontrado");
+                .body(ex.getMessage());
     }
 }

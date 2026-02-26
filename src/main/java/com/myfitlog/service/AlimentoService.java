@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import com.myfitlog.dto.AlimentoRequestDTO;
 import com.myfitlog.dto.AlimentoResponseDTO;
 import com.myfitlog.entity.Alimento;
+import com.myfitlog.exception.RecursoNaoEncontradoException;
 import com.myfitlog.repository.AlimentoRepository;
 
 @Service
@@ -34,15 +35,18 @@ public class AlimentoService {
             .toList();
     }
 
-    /*public Alimento buscarPorId(Long id) {
-        return alimentoRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Alimento não encontrado"));
+    public AlimentoResponseDTO buscarPorId(Long id) {
+
+        Alimento alimento = alimentoRepository.findById(id).orElseThrow(() -> new RecursoNaoEncontradoException("Alimento com ID " + id + " não encontrado"));
+
+        return converterParaDTO(alimento);
     }
 
     public void deletarPorId(Long id) {
-        Alimento alimento = alimentoRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Alimento não encontrado"));
+        Alimento alimento = alimentoRepository.findById(id).orElseThrow(() -> new RecursoNaoEncontradoException("Alimento com ID " + id + " não encontrado"));
             
         alimentoRepository.delete(alimento);
-    }*/
+    }
 
     //-------------------------------------------------------------------------------------------------------/
 
