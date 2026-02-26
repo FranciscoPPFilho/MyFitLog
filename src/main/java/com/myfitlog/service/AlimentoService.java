@@ -27,11 +27,14 @@ public class AlimentoService {
         return response;
     }
 
-    public List<Alimento> listarAlimentos() {
-        return alimentoRepository.findAll();
+    public List<AlimentoResponseDTO> listarAlimentos() {
+        return alimentoRepository.findAll()
+            .stream()
+            .map(this::converterParaDTO)
+            .toList();
     }
 
-    public Alimento buscarPorId(Long id) {
+    /*public Alimento buscarPorId(Long id) {
         return alimentoRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Alimento não encontrado"));
     }
 
@@ -39,7 +42,7 @@ public class AlimentoService {
         Alimento alimento = alimentoRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Alimento não encontrado"));
             
         alimentoRepository.delete(alimento);
-    }
+    }*/
 
     //-------------------------------------------------------------------------------------------------------/
 

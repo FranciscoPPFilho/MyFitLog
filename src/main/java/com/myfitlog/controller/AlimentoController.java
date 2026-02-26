@@ -3,7 +3,6 @@ package com.myfitlog.controller;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.myfitlog.dto.AlimentoRequestDTO;
 import com.myfitlog.dto.AlimentoResponseDTO;
-import com.myfitlog.entity.Alimento;
 import com.myfitlog.service.AlimentoService;
 
 import jakarta.validation.Valid;
@@ -29,30 +27,17 @@ public class AlimentoController {
     }
 
     @PostMapping
-    public ResponseEntity<Alimento> criarAlimento(@Valid @RequestBody AlimentoRequestDTO dto) {
-        /*Alimento novoAlimento = alimentoService.salvarAlimento(alimento);
-        return ResponseEntity.status(HttpStatus.CREATED).body(novoAlimento);*/
-        Alimento novoAlimento = new Alimento(dto);
-
-        Alimento alimentoSalvo = alimentoService.salvarAlimento(novoAlimento);
-
-        return ResponseEntity.status(HttpStatus.CREATED).body(alimentoSalvo);
+    public ResponseEntity<AlimentoResponseDTO> criarAlimento(@Valid @RequestBody AlimentoRequestDTO dto) {
+        
+        AlimentoResponseDTO response = alimentoService.salvarAlimento(dto);
+        
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
     @GetMapping
     public ResponseEntity<List<AlimentoResponseDTO>> listarAlimentos() {
         
-        List<AlimentoResponseDTO> alimentos = alimentoService.listarAlimentos()
-            .stream()
-            .map(item -> new AlimentoResponseDTO(
-                item.getId(),
-                item.getNome(),
-                item.getCarboidrato(),
-                item.getProteina(),
-                item.getGordura(),
-                item.getCalorias()
-            )).toList();
-
-        return ResponseEntity.ok(alimentos);
+        List<AlimentoResponseDTO> response = alimentoService.listarAlimentos();
+        return ResponseEntity.ok(response);
     }
 }

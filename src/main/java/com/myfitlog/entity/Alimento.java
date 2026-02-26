@@ -1,7 +1,5 @@
 package com.myfitlog.entity;
 
-import com.myfitlog.dto.AlimentoRequestDTO;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
