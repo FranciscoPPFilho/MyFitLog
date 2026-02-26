@@ -35,4 +35,27 @@ public class Refeicao {
 
     @OneToMany(mappedBy = "refeicao", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ItemRefeicao> itens = new ArrayList<>();
+    
+    public Double getTotalCarboidratos() {
+        return this.itens.stream()
+                .mapToDouble(ItemRefeicao::getCarboidratoCalculado)
+                .sum();
+    }
+    public Double getTotalProteinas() {
+        return this.itens.stream()
+                .mapToDouble(ItemRefeicao::getProteinaCalculada)
+                .sum();
+    }
+
+    public Double getTotalGorduras() {
+        return this.itens.stream()
+                .mapToDouble(ItemRefeicao::getGorduraCalculada)
+                .sum();
+    }
+    
+    public Double getTotalCalorias() {
+        return this.itens.stream()
+                .mapToDouble(ItemRefeicao::getCaloriaCalculada)
+                .sum();
+    }
 }

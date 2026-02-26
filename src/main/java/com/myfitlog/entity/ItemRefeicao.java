@@ -35,4 +35,20 @@ public class ItemRefeicao {
 
     @PositiveOrZero
     private Double quantidade;
+
+    public Double getCarboidratoCalculado() {
+        return (this.alimento.getCarboidrato() / 100.0) * this.quantidade;
+    }
+
+    public Double getProteinaCalculada() {
+        return (this.alimento.getProteina() / 100.0) * this.quantidade;
+    }
+
+    public Double getGorduraCalculada() {
+        return (this.alimento.getGordura() / 100.0) * this.quantidade;
+    }
+
+    public Double getCaloriaCalculada() {
+        return (this.alimento.getCalorias() / 100.0) * this.quantidade;
+    }
 }
