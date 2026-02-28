@@ -35,6 +35,11 @@ public class Refeicao {
 
     @OneToMany(mappedBy = "refeicao", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ItemRefeicao> itens = new ArrayList<>();
+
+    public void adicionarItem(ItemRefeicao item) {
+        itens.add(item);
+        item.setRefeicao(this);
+    }
     
     public Double getTotalCarboidratos() {
         return this.itens.stream()
