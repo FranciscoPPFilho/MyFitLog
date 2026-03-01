@@ -1,5 +1,7 @@
 package com.myfitlog.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.myfitlog.dto.ItemRefeicaoResponseDTO;
@@ -25,6 +27,7 @@ public class RefeicaoService {
         this.alimentoRepository = alimentoRepository;
     }
 
+    //Refator depois
     @Transactional
     public RefeicaoResponseDTO salvarRefeicao(RefeicaoRequestDTO dto) {
 
@@ -44,12 +47,19 @@ public class RefeicaoService {
         return converterParaResponseDTO(refeicaoRepository.save(novaRefeicao));
     }
 
+    public List<RefeicaoResponseDTO> listarRefeicoes() {
+        
+        List<RefeicaoResponseDTO> response = refeicaoRepository.findAll().stream().map(this::converterParaResponseDTO).toList();
+        
+        return response;
+    }
+
     private RefeicaoResponseDTO converterParaResponseDTO(Refeicao refeicao) {
 
         return new RefeicaoResponseDTO(
             refeicao.getId(),
             refeicao.getNome(),
-            refeicao.getItens().stream().map(this::converterParaDTO).toList(),
+            refeicao.getItens().stream().map(this::converterItemParaDTO).toList(),
             refeicao.getTotalCarboidratos(),
             refeicao.getTotalProteinas(),
             refeicao.getTotalGorduras(),
@@ -57,7 +67,7 @@ public class RefeicaoService {
         );
     }
 
-    private ItemRefeicaoResponseDTO converterParaDTO(ItemRefeicao item) {
+    private ItemRefeicaoResponseDTO converterItemParaDTO(ItemRefeicao item) {
 
         return new ItemRefeicaoResponseDTO(
             item.getId(),

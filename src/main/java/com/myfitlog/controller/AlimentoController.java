@@ -36,7 +36,7 @@ public class AlimentoController {
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
-    @GetMapping
+    @GetMapping()
     public ResponseEntity<List<AlimentoResponseDTO>> listarAlimentos() {
         
         List<AlimentoResponseDTO> response = alimentoService.listarAlimentos();

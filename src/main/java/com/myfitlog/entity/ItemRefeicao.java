@@ -37,18 +37,22 @@ public class ItemRefeicao {
     private Double quantidade;
 
     public Double getCarboidratoCalculado() {
-        return (this.alimento.getCarboidrato() / 100.0) * this.quantidade;
+        Double valor = (this.alimento.getCarboidrato() / 100.0) * this.quantidade;
+        return Math.round(valor * 100) / 100.0;
     }
 
     public Double getProteinaCalculada() {
-        return (this.alimento.getProteina() / 100.0) * this.quantidade;
+        Double valor = (this.alimento.getProteina() / 100.0) * this.quantidade;
+        return Math.round(valor * 100.0) / 100.0;
     }
 
     public Double getGorduraCalculada() {
-        return (this.alimento.getGordura() / 100.0) * this.quantidade;
+        Double valor = (this.alimento.getGordura() / 100.0) * this.quantidade;
+        return Math.round(valor * 100.0) / 100.0;
     }
 
     public Double getCaloriaCalculada() {
-        return (this.alimento.getCalorias() / 100.0) * this.quantidade;
+        Double valor = (this.alimento.getCalorias() / 100.0) * this.quantidade;
+        return Math.round(valor * 100.0) / 100.0;
     }
 }

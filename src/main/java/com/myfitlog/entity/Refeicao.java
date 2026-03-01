@@ -9,6 +9,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
@@ -35,6 +37,10 @@ public class Refeicao {
 
     @OneToMany(mappedBy = "refeicao", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ItemRefeicao> itens = new ArrayList<>();
+
+    @ManyToOne()
+    @JoinColumn(name = "dieta_id")
+    private Dieta dieta;
 
     public void adicionarItem(ItemRefeicao item) {
         itens.add(item);
