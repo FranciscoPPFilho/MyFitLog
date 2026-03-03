@@ -54,7 +54,7 @@ public class RefeicaoService {
         return response;
     }
 
-    private RefeicaoResponseDTO converterParaResponseDTO(Refeicao refeicao) {
+    public RefeicaoResponseDTO converterParaResponseDTO(Refeicao refeicao) {
 
         return new RefeicaoResponseDTO(
             refeicao.getId(),
@@ -67,7 +67,7 @@ public class RefeicaoService {
         );
     }
 
-    private ItemRefeicaoResponseDTO converterItemParaDTO(ItemRefeicao item) {
+    public ItemRefeicaoResponseDTO converterItemParaDTO(ItemRefeicao item) {
 
         return new ItemRefeicaoResponseDTO(
             item.getId(),
